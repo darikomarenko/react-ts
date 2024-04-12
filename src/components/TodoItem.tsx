@@ -1,18 +1,18 @@
+import {Todo} from '../types/todo'
 
-interface TodoItemProps {
-    id: string,
-    title: string,
-    completed: boolean
-    style?: React.CSSProperties
+interface TodoItemProps extends Todo{
+    style?: React.CSSProperties,
+    toggleTodo: (id: Todo['id']) => void;
+    removeTodo: (id: Todo['id']) => void;
 
 }
 
-const TodoItem = ({id, title, completed, style ={}}: TodoItemProps) => {
+const TodoItem = ({id, title, completed, style ={}, toggleTodo, removeTodo}: TodoItemProps) => {
     return (
-        <li style={{color: 'red', backgroundColor: 'white', ...style}}>
-            <input type="checkbox" checked={completed}/>
+        <li style={{color: 'black', backgroundColor: 'white', ...style}}>
+            <input type="checkbox" checked={completed} onChange={() => toggleTodo(id)}/>
             <span>{title}</span>
-            <span>&times;</span>
+            <span onClick={() => removeTodo(id)}>&times;</span>
         </li>
     )
 }
