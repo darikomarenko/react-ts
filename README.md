@@ -1,2 +1,2 @@
-TodoList on React TS
-To run the app - npm run dev
+TodoList on React TS + Redux
+To run the app - npm install, npm run dev
