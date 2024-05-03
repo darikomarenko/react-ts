@@ -5,7 +5,7 @@ import { Todo } from 'types/todo';
 import { selectAsyncTodos } from './AsyncTodoSelector';
 import { useEffect } from 'react';
 import { removeTodo, fetchAllTodos, toggleTodo} from './todoAsyncAction';
-import 
+
 
 
 const AsyncTodoList = () => {

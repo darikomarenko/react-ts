@@ -56,9 +56,7 @@ export const toggleTodo = createAsyncThunk
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(
-                    {
-                        completed: !todo.completed,
-                    }),
+                    {completed: !todo.completed,}),
         });
         if(!response.ok) {
             return rejectWithValue('Impossible to update todo with id' + id);
@@ -81,4 +79,4 @@ export const removeTodo = createAsyncThunk<Todo['id'], Todo['id'], {rejectValue:
         }
         return id;
     }
-)
+);
