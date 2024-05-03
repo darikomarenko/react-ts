@@ -2,20 +2,29 @@ import TodoItem from '../../components/TodoItem'
 import { useAppDispatch} from 'redux-hook'
 import { useSelector } from 'react-redux';
 import { Todo } from 'types/todo';
-import { removeTodo, toggleTodo } from './todoSlice';
-import { selectAllTodos } from './todoSelectors';
+import { selectAsyncTodos } from './AsyncTodoSelector';
+import { useEffect } from 'react';
+import { removeTodo, fetchAllTodos, toggleTodo} from './todoAsyncAction';
+import 
 
 
-const TodoList = () => {
-    const list = useSelector(selectAllTodos);
+const AsyncTodoList = () => {
+    const {list} = useSelector(selectAsyncTodos);
     const dispatch = useAppDispatch();
+
     const handleRemoveTodo = (id: Todo['id']) => {
-        dispatch(removeTodo(id));
-    };
+       dispatch(removeTodo(id));
+    }
 
     const handleToggleTodo = (id: Todo['id']) => {
         dispatch(toggleTodo(id));
     };
+
+
+    useEffect(() => {
+        dispatch(fetchAllTodos());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <ul>
@@ -25,4 +34,4 @@ const TodoList = () => {
         </ul>
     )
 }
-export default TodoList;
+export default AsyncTodoList;
